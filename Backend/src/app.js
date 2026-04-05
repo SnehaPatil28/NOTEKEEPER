@@ -3,6 +3,7 @@ import notesRoutes from "./routes/notesRoutes.js";
 import { connect } from "mongoose";
 import { connectDb } from "./config/db.js";
 import dotenv from "dotenv";
+import rateLimiter from "./middleware/rateLimiter.js";
 
 dotenv.config();
 
@@ -13,6 +14,8 @@ connectDb();
 
 // middleware
 app.use(express.json());
+
+app.use(rateLimiter);
 
 app.use("/api/notes", notesRoutes);
 
