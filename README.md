@@ -176,16 +176,6 @@ All API routes are protected by a sliding window rate limiter powered by **Upsta
 
 ---
 
-## 🤝 Contributing
-
-1. Fork the repo
-2. Create a new branch: `git checkout -b feature/your-feature`
-3. Commit your changes: `git commit -m "Add your feature"`
-4. Push to the branch: `git push origin feature/your-feature`
-5. Open a Pull Request
-
----
-
 <div align="center">
 
 Made with ❤️ using React & Node.js
