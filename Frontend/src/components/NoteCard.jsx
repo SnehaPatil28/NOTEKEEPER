@@ -1,7 +1,7 @@
 import { PenSquareIcon, Trash2Icon } from "lucide-react";
 import { Link, useNavigate } from "react-router";
 import { formatDate } from "../lib/utils";
-import axios from "axios";
+import axios from "../lib/axios";
 import toast from "react-hot-toast";
 
 const NoteCard = ({ note, onDelete }) => {
@@ -11,7 +11,7 @@ const NoteCard = ({ note, onDelete }) => {
     e.preventDefault(); // prevent Link navigation
     if (!window.confirm("Delete this note?")) return;
     try {
-      await axios.delete(`http://localhost:5001/api/notes/${note._id}`);
+      await axios.delete(`/notes/${note._id}`);
       toast.success("Note deleted");
       onDelete(note._id);
     } catch {

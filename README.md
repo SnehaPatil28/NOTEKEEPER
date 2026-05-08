@@ -176,6 +176,43 @@ All API routes are protected by a sliding window rate limiter powered by **Upsta
 
 ---
 
+## 🚢 Deploying to Render
+
+This app is configured to run as a **single service** on Render — the Express backend serves the built React frontend on the same port.
+
+### Steps
+
+1. Push your code to GitHub
+
+2. Go to [render.com](https://render.com) → **New** → **Web Service**
+
+3. Connect your GitHub repository
+
+4. Configure the service:
+
+   | Setting | Value |
+   |---------|-------|
+   | **Runtime** | Node |
+   | **Build Command** | `npm run build` |
+   | **Start Command** | `npm run start` |
+   | **Root Directory** | *(leave blank — use repo root)* |
+
+5. Add **Environment Variables** in the Render dashboard:
+
+   | Key | Value |
+   |-----|-------|
+   | `NODE_ENV` | `production` |
+   | `MONGO_URI` | your MongoDB Atlas connection string |
+   | `UPSTASH_REDIS_REST_URL` | your Upstash Redis URL |
+   | `UPSTASH_REDIS_REST_TOKEN` | your Upstash Redis token |
+   | `PORT` | `5001` *(optional, Render sets this automatically)* |
+
+6. Click **Deploy** — Render will build the frontend and start the server. Your app will be live at `https://your-app-name.onrender.com`
+
+> **MongoDB Atlas:** Make sure to whitelist `0.0.0.0/0` in Atlas Network Access so Render's dynamic IPs can connect.
+
+---
+
 ## 🤝 Contributing
 
 1. Fork the repo

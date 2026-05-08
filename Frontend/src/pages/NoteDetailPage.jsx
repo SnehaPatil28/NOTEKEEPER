@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router";
 import Navbar from "../components/Navbar";
-import axios from "axios";
+import axios from "../lib/axios";
 import toast from "react-hot-toast";
 import { ArrowLeftIcon, Trash2Icon, PenSquareIcon, SaveIcon, XIcon } from "lucide-react";
 import { formatDate } from "../lib/utils";
@@ -21,7 +21,7 @@ function NoteDetailPage() {
   useEffect(() => {
     const fetchNote = async () => {
       try {
-        const res = await axios.get(`http://localhost:5001/api/notes/${id}`);
+        const res = await axios.get(`/notes/${id}`);
         setNote(res.data);
         setTitle(res.data.title);
         setContent(res.data.content);
@@ -48,7 +48,7 @@ function NoteDetailPage() {
     }
     setSaving(true);
     try {
-      const res = await axios.put(`http://localhost:5001/api/notes/${id}`, {
+      const res = await axios.put(`/notes/${id}`, {
         title,
         content,
       });
@@ -76,7 +76,7 @@ function NoteDetailPage() {
     if (!window.confirm("Delete this note? This cannot be undone.")) return;
     setDeleting(true);
     try {
-      await axios.delete(`http://localhost:5001/api/notes/${id}`);
+      await axios.delete(`/notes/${id}`);
       toast.success("Note deleted");
       navigate("/");
     } catch (error) {

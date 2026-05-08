@@ -1,0 +1,10 @@
+{
+  "name": "thinkerboard",
+  "version": "1.0.0",
+  "description": "Full-stack notes app",
+  "scripts": {
+    "build": "npm install --prefix Frontend && npm run build --prefix Frontend",
+    "start": "npm install --prefix Backend && node Backend/src/app.js",
+    "build-start": "npm run build && npm run start"
+  }
+}
